@@ -1,10 +1,10 @@
 youtubeData:
   ## provide multiple api key in case any key get exhausted next key would be automatically picked up
   key:
-    - "AIzaSyDaeGxZ3qB3xHsMfxiIHYi_A0ND453ma1k"
-    - "AIzaSyDaeGxZ3qB3xHsMfxiIHYi_A0ND453ma1k"
-    - "AIzaSyDaeGxZ3qB3xHsMfxiIHYi_A0ND453ma1k"
-    - "AIzaSyBrNkJ5oRtnLTNMGy1D0x5lnMmODyHkJP0"
+    - "AIz____________________________________"
+    - "AIz____________________________________"
+    - "AIz____________________________________"
+    - "AIz____________________________________"
   topics:
     - "Xavi"
     - "Barcelona"
