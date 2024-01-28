@@ -8,7 +8,7 @@ An API to fetch the latest videos sorted in reverse chronological order of their
 
 - [Java](https://www.java.com/) (version 8 or higher)
 - [Maven](https://maven.apache.org/)
-- PostgreSQL Database
+- [PostgreSQL Database](https://www.postgresql.org/)
 
 ### Database Setup
 
