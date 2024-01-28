@@ -30,11 +30,12 @@ public class RetrieveData {
   private static final String YAML_FILE_PATH = "src/main/resources/application.yml";
 
   private static final String SELECT_ALL_QUERY =
-      "SELECT * FROM youtube_data WHERE title LIKE ? AND description LIKE ? ORDER BY published_on" +
-          " DESC LIMIT ? OFFSET ?;";
+      "SELECT * FROM youtube_data WHERE (LOWER(title) LIKE LOWER(?) OR LOWER(description) LIKE " +
+          "LOWER(?)) ORDER BY published_on DESC LIMIT ? OFFSET ?;";
 
   private static final String COUNT_QUERY =
-      "SELECT COUNT(*) FROM youtube_data WHERE title LIKE ? AND description LIKE ?;";
+      "SELECT COUNT(*) FROM youtube_data WHERE (LOWER(title) LIKE LOWER(?) OR LOWER(description) " +
+          "LIKE LOWER(?));";
 
   /**
    * Searches for YouTube data based on the provided title and description, with pagination.
@@ -153,16 +154,42 @@ public class RetrieveData {
   private void setCountQueryParameters(PreparedStatement countStatement,
       String title,
       String description) throws SQLException {
-    countStatement.setString(1, "%" + title + "%");
-    countStatement.setString(2, "%" + description + "%");
+    // Split the search query into individual words
+    String[] titleWords = title
+        .toLowerCase()
+        .split("\\s+");
+    String[] descriptionWords = description
+        .toLowerCase()
+        .split("\\s+");
+
+    // Create a pattern for each word to search for partial matches
+    String titlePattern = "%" + String.join("%", titleWords) + "%";
+    String descriptionPattern = "%" + String.join("%", descriptionWords) + "%";
+
+    // Set parameters for both title and description
+    countStatement.setString(1, titlePattern);
+    countStatement.setString(2, descriptionPattern);
   }
 
   private void setSearchQueryParameters(PreparedStatement statement,
       String title,
       String description,
       Pageable pageable) throws SQLException {
-    statement.setString(1, "%" + title + "%");
-    statement.setString(2, "%" + description + "%");
+    // Split the search query into individual words
+    String[] titleWords = title
+        .toLowerCase()
+        .split("\\s+");
+    String[] descriptionWords = description
+        .toLowerCase()
+        .split("\\s+");
+
+    // Create a pattern for each word to search for partial matches
+    String titlePattern = "%" + String.join("%", titleWords) + "%";
+    String descriptionPattern = "%" + String.join("%", descriptionWords) + "%";
+
+    // Set parameters for both title and description
+    statement.setString(1, titlePattern);
+    statement.setString(2, descriptionPattern);
     statement.setInt(3, pageable.getPageSize());
     statement.setInt(4, pageable.getPageNumber() * pageable.getPageSize());
   }
