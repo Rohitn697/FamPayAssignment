@@ -13,7 +13,7 @@ An API to fetch the latest videos sorted in reverse chronological order of their
 ### Database Setup
 
 1. Install PostgreSQL and create a database named "postgres".
-2. Create a user with the following credentials:
+2. Create a database connection with the following credentials:
 
     ```yaml
         url: "jdbc:postgresql://localhost:5432/postgres"
