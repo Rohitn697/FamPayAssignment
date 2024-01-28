@@ -23,7 +23,7 @@ public class ApiDataService {
   private static final Logger logger = LoggerFactory.getLogger(ApiDataService.class);
 
   @Autowired
-  private StoreData database;
+  StoreData database;
 
   private static final String API_URL = "https://www.googleapis.com/youtube/v3/search";
 
@@ -35,7 +35,7 @@ public class ApiDataService {
 
   private List<String> topics;
 
-  private AtomicInteger currentApiKeyIndex = new AtomicInteger(0);
+  private final AtomicInteger currentApiKeyIndex = new AtomicInteger(0);
 
   public void searchContent() {
     try {
@@ -51,13 +51,13 @@ public class ApiDataService {
   }
 
   private UriComponentsBuilder setQueryParams() {
-    if (keys == null || keys.isEmpty()) {
+    if (keys == null || keys.isEmpty() || topics.isEmpty()) {
       arrangeDetails();
     }
 
     int currentKeyIndex = currentApiKeyIndex.get() % keys.size();
     String key = keys.get(currentKeyIndex);
-    String topic = topics.get(0);
+    String topic = topics.remove(0);
     logger.info("Searching for Query: " + topic);
     UriComponentsBuilder uri = UriComponentsBuilder.fromHttpUrl(API_URL);
     uri.queryParam("key", key);
