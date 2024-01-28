@@ -20,7 +20,18 @@ An API to fetch the latest videos sorted in reverse chronological order of their
         username: "postgres"
         password: "root"
     ```
-
+3. Need to create the following schema in order to store data in database
+ ```sql
+    CREATE TABLE IF NOT EXISTS public.youtube_data
+    (
+    video_id character varying COLLATE pg_catalog."default" NOT NULL,
+    title character varying COLLATE pg_catalog."default",
+    description character varying COLLATE pg_catalog."default",
+    published_on timestamp with time zone,
+    thumbnails jsonb,
+    CONSTRAINT youtube_data_pkey PRIMARY KEY (video_id)
+    );
+   ```
 ### Build and Run
 
 ```bash
