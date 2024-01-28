@@ -35,7 +35,11 @@ mvn clean install
 
 # Run the service
 mvn spring-boot:run
-
+Or
+To run the application:
+1. Navigate to `src -> main -> java->com.fampay.api`.
+2. Open the `FampayAssignmentApplication.java` file.
+3. Run the application from the main method.
 
 ### Build and Run
 The service will be available at http://localhost:8080.
