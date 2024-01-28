@@ -25,7 +25,7 @@ An API to fetch the latest videos sorted in reverse chronological order of their
 
 ```bash
 # Clone the repository
-git clone https://github.com/rohitn697/FamPayAssignment.git
+git clone https://github.com/Rohitn697/FamPayAssignment.git
 
 # Navigate to the project directory
 cd FamPayAssignment
