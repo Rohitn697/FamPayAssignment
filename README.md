@@ -39,6 +39,12 @@ mvn spring-boot:run
 
 ### Build and Run
 The service will be available at http://localhost:8080.
+
+# Build the Docker image
+docker build -t fampay-assignment .
+
+# Run the Docker container
+docker run -p 8080:8080 fampay-assignment
 ```
 
 ## Endpoints
